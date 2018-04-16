@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<style type="text/css">
+#header {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.25em;
+	color: #333;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 2%;
+	padding-left: 40px;
+}
+	
+h3 {
+	color: gray;
+	}
+	
+#page {
+	width: 45%;
+	margin-top: 150px;
+	margin-left: 1.5em;
+	margin-bottom: 300px;
+	padding: 40px;
+	text-align: center;
+	color: #333;
+}
+
+	
+#words {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 2;
+	font-size: 1.125em;
+	text-align: left;
+		}
+
+#about 
+	{
+	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
+	position: fixed;
+	top: 100;
+	left: 50%;
+	margin-top: 100px;
+	width: 30%;
+	padding-left: 10%;
+	}
+	
+#def
+	{
+	font-size: .80em;
+	color: DarkGray;
+	line-height: 1.5;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+	}
+	
+A:link {text-decoration:none; color: dimgray;}
+A:visited {text-decoration: none; color: darkgray;}
+A:hover {text-decoration: underline;}
+	
+#countdown
+	{
+	font-size: 1;
+	font-family: 'Open Sans', sans-serif;
+	color: gray;
+	position: fixed;
+	text-align: right;
+	top: 0;
+	left: 50%;
+	margin-top: 100px;
+	width: 30%;
+	padding-left: 10%;
+	}
+	
+</style>
+	<script src="countdown.js" type="text/javascript"></script>
+
+<script>
+// An embargoed dissertation is the opposite of an open access dissertation, which is available immediately in digital form, often in an institutional repository. The tension between these two models of scholarly communication is clear.
+var end = new Date(2020,1,22);
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'Disembargo is Complete.';
+
+            return;
+        }
+ 
+        document.getElementById('countdown').innerHTML = 'Disembargo<br>by Mark Sample<br>';
+		document.getElementById('countdown').innerHTML += '<br>Disembargo period ends in<br>';
+		document.getElementById('countdown').innerHTML += countdown( new Date(2020, 1, 22),null,0,4 ).toString().replace("and","<br>and");
+		document.getElementById('countdown').innerHTML += "<br><br><a href='http://disembargo.aws.af.cm/index.html'>Read Disembargo</a>";
+		document.getElementById('countdown').innerHTML += "<br><br><a rel='license' href='http://creativecommons.org/licenses/by-sa/3.0/'><img alt='Creative Commons License' style='border-width:0' src='http://i.creativecommons.org/l/by-sa/3.0/88x31.png'/></a>";
+    }
+
+    timer = setInterval(showRemaining, 1000);
+</script>
+</head>
+<body>
+<div id="header">
+	<h1>Disembargo</h1>
+	<h3>An Open Diss, One Letter at a Time</h3>
+</div>
+	<div id="page">
+    <div id="words">
+	<div id="def"><strong>embargo</strong> (from the Spanish <em>embargar</em>, to arrest or impede): a prohibitory order, forbidding the ships of a foreign power to enter or leave the ports of a country, or native ships to proceed thither, generally issued in anticipation of war (<em>Oxford English Dictionary</em>, 2nd edition)</div>
+	
+	Some influential academic institutions and scholarly associations recommend that doctoral dissertations be withheld from digital circulation for a period of up to six years, a procedure called embargoing. Like its diplomatic namesake, a dissertation embargo relies on the assumption that limiting the free play of ideas confers a strategic advantage upon the proscriber while weakening the position of those who seek the exchange of ideas. 
+	<p>But how does an academic embargo play out? Who benefits from an embargoed dissertation? How much value does withheld research accrue? How long is six years when it comes to scholarly communication? In order to explore these questions I created <a href='http://disembargo.aws.af.cm/index.html'>Disembargo</a>. Disembargo is a dissertation—my own—emerging from a six-year embargo, one letter at a time. Every ten minutes a single letter, number, or space from the final dissertation manuscript is published under a Creative Commons license, an excruciating pace that dramatizes the silence of an embargo. Disembargo launched on September 3, 2013. At the current rate of access (six characters per hour, or roughly twenty-five words a day), the entire dissertation will be available in the fall of 2019. 
+	
+	<p>Disembargo is a project by <a href="http://www.samplereality.com">Mark Sample</a>. Special thanks to my fellow creative coders: Darius Kazemi, for the <a href="https://github.com/dariusk/slowtext">Slow Text</a> engine, and <a href="https://github.com/boodoo">Joel McCoy</a> for helping me to play nicely with my Node.js host, App Fog. Also thanks to <a href="https://github.com/rmehlinger">Richard Mehlinger</a> for jQuery ideas. And finally, a slow shout-out to my dissertation advisor <a href="http://www.english.upenn.edu/~jenglish/Home/JENGLISH.html">Jim English</a>, who wouldn't be surprised that I turned my dissertation into a piece of conceptual art instead of a book.
+</div>
+	
+	<div id="countdown"></div>
+ </div>
+ </body>
+</html>
+
+
