@@ -1,16 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <h2 id="words">loading...</h2>
-    <script src="lib/socket.io.js"></script>
+<head>
+ <meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+#header {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.25em;
+	color: #333;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 2%;
+	padding-left: 40px;
+}
+	
+h3 {
+	color: gray;
+	}
+	
+#page {
+	width: 45%;
+	margin-top: 150px;
+	margin-left: 1.5em;
+	margin-bottom: 300px;
+	padding: 40px;
+	text-align: center;
+	color: #333;
+}
+
+	
+#words {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 2;
+	font-size: 1.125em;
+	text-align: left;
+		}
+
+#about 
+	{
+	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
+	position: fixed;
+	top: 100;
+	left: 50%;
+	margin-top: 100px;
+	width: 30%;
+	padding-left: 10%;
+	}
+	
+#countdown
+	{
+	font-size: 1;
+	font-family: 'Open Sans', sans-serif;
+	color: gray;
+	position: fixed;
+	text-align: right;
+	top: 0;
+	left: 50%;
+	margin-top: 100px;
+	width: 30%;
+	padding-left: 10%;
+	}
+	
+</style>
+	<script src="countdown.js" type="text/javascript"></script>
+
+<script>
+
+var end = new Date(2020,2,20);
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'Disembargo is Complete.';
+
+            return;
+        }
+ 
+        document.getElementById('countdown').innerHTML = 'Disembargo<br>by Mark Sample<br>';
+		document.getElementById('countdown').innerHTML += '<br>Disembargo period ends in<br>';
+		document.getElementById('countdown').innerHTML += countdown( new Date(2020, 1, 22),null,0,4 ).toString().replace("and","<br>and");
+		document.getElementById('countdown').innerHTML += "<br><br><a href='about.html'>About Disembargo</a>";
+    }
+
+    timer = setInterval(showRemaining, 1000);
+</script>
+</head>
+<body>
+<div id="header">
+	<h1>Disembargo</h1>
+	<h3>An Open Diss, One Letter at a Time</h3>
+</div>
+	<div id="page">
+    <div id="words"><p>Loading Disembargo...</div>
+	<script src="lib/socket.io.js"></script>
     <script>
       var socket = io.connect('http://localhost:5000');
       socket.on('news', function (data) {
-        document.getElementById('words').innerText = data.word;
+		document.getElementById('words').innerHTML = data.word;
+		document.getElementById('timer').innerHTML = data.timer;
       });
     </script>
+	<div id="countdown"></div>
+ </div>
  </body>
 </html>
+
+
